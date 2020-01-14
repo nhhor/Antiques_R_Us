@@ -4,6 +4,10 @@
 
 <%= f.label :product_id  %>
 <%= collection_select(:purchase, :product_id, Product.all, :id, :name) %>
+product_id_array.push(:id)
+
+
+
 
 <%= f.label :customer_id  %>
 <%= collection_select(:purchase, :customer_id, Customer.all, :id, :name) %>
@@ -11,8 +15,8 @@
 <%= f.label :date %>
 <%= datetime_select Date.today, prefix: :date %>
 
-<%= f.label :t_number %>
-<%= f.number_field :t_number %>
+<%= f.label :receipt_id %>
+<%= f.number_field :receipt_id %>
 
 
 <p><%= f.submit %></p>

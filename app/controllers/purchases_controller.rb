@@ -14,12 +14,32 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @purchase = Purchase.new(purchase_params)
-    if @purchase.save
-      redirect_to purchases_path
-    else
-      render :new
-    end
+
+    date = purchase_params[:date]
+    receipt_id = purchase_params[:receipt_id]
+    customer_id = purchase_params[:customer_id]
+    product_id_array = purchase_params[:product_id_array]
+
+    # product_id_array each do |purchase|
+    # @purchase = Purchase.new(date, receipt_id, customer_id, purchase[:id])
+    #   if @purchase.save
+    #     redirect_to purchases_path
+    #   else
+    #     render :new
+    #   end
+    # end
+    #
+    # end
+
+
+
+    # @purchase = Purchase.new(purchase_params)
+    # if @purchase.save
+    #   redirect_to purchases_path
+    # else
+    #   render :new
+    # end
+
   end
 
   def edit
@@ -52,7 +72,7 @@ class PurchasesController < ApplicationController
 
   private
     def purchase_params
-      params.require(:purchase).permit(:product_id, :customer_id, :t_number, :date)
+      params.require(:purchase).permit(:product_id, :customer_id, :receipt_id, :date)
     end
 
 end

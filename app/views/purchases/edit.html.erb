@@ -1,11 +1,19 @@
-<h1>Edit products</h1>
+<h1>Edit purchases</h1>
 
-<%= form_for @product do |f| %>
-<%= f.label :name  %>
-<%= f.text_field :name %>
-<%= f.label :price %>
-<%= f.number_field :price, min: 0, step: 0.01  %>
-<%= f.label :stock %>
-<%= f.number_field :stock %>
+<%= form_for @purchase do |f| %>
+
+<%= f.label :product_id  %>
+<%= collection_select(:purchase, :product_id, Product.all, :id, :name) %>
+
+<%= f.label :customer_id  %>
+<%= collection_select(:purchase, :customer_id, Customer.all, :id, :name) %>
+
+<%= f.label :date %>
+<%= datetime_select Date.today, prefix: :date %>
+
+<%= f.label :receipt_id %>
+<%= f.number_field :receipt_id %>
+
+
 <p><%= f.submit %></p>
 <% end %>
