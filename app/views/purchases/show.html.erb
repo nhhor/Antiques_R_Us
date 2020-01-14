@@ -1,0 +1,8 @@
+<h1>Transaction: <%= @purchase.t_number %></h1>
+<h2>Customer: <%= @customer.name %></h2>
+<h2>Product: <%= @product.name %></h2>
+
+<p><%= link_to "Edit", edit_purchase_path(@purchase) %> </p>
+<p><%= link_to "Delete", purchase_path(@purchase), :data => {:confirm => "Really??", :method => "delete"} %></p>
+
+<p><%= link_to "Return to purchases", purchases_path %></p>

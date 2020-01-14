@@ -1,0 +1,13 @@
+<h1>Customers</h1>
+
+<% if @customers.any? %>
+<ul>
+  <% @customers.each do |customer| %>
+  <li><%= link_to customer.name, customer_path(customer) %></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no customers yet!</p>
+<% end %>
+
+<p><%= link_to "Add a new customer", new_customer_path %></p>

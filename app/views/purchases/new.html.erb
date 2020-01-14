@@ -1,0 +1,19 @@
+<h1>New purchases</h1>
+
+<%= form_for @purchase do |f| %>
+
+<%= f.label :product_id  %>
+<%= collection_select(:purchase, :product_id, Product.all, :id, :name) %>
+
+<%= f.label :customer_id  %>
+<%= collection_select(:purchase, :customer_id, Customer.all, :id, :name) %>
+
+<%= f.label :date %>
+<%= datetime_select Date.today, prefix: :date %>
+
+<%= f.label :t_number %>
+<%= f.number_field :t_number %>
+
+
+<p><%= f.submit %></p>
+<% end %>

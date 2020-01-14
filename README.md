@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+
+https://guides.rubyonrails.org/v3.2/association_basics.html

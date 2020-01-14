@@ -1,0 +1,6 @@
+<h1><%= @customer.name %></h1>
+
+<p><%= link_to "Edit", edit_customer_path(@customer) %> </p>
+<p><%= link_to "Delete", customer_path(@customer), :data => {:confirm => "Really??", :method => "delete"} %></p>
+
+<p><%= link_to "Return to customers", customers_path %></p>
