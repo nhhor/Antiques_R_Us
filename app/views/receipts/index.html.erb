@@ -1,0 +1,13 @@
+<h1>Receipts</h1>
+
+<% if @receipts.any? %>
+<ul>
+  <% @receipts.each do |receipt| %>
+  <li><%= link_to receipt.id, receipt_path(receipt) %></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are no receipts yet!</p>
+<% end %>
+
+<p><%= link_to "Add a new receipt", new_receipt_path %></p>

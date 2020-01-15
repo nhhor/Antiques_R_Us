@@ -1,53 +1,41 @@
 class PurchasesController < ApplicationController
 
   def index
-    @purchases = Purchase.all
-    render :index
+    @receipt = Receipt.find(params[:receipt_id])
+    @purchases = @receipt.purchases.all
+    # render :index
+    redirect_to receipts_path
+
   end
 
   def new
-    @purchase = Purchase.new
+    @receipt = Receipt.find(params[:receipt_id])
+    @purchase = @receipt.purchases.new
     @customers = Customer.all
-    @products_array = Product.all.map { |product| [product.name, product.id] }
-
     render :new
   end
 
   def create
+    @receipt = Receipt.find(params[:receipt_id])
+    @purchase = @receipt.purchases.new(purchase_params)
 
-    date = purchase_params[:date]
-    receipt_id = purchase_params[:receipt_id]
-    customer_id = purchase_params[:customer_id]
-    product_id_array = purchase_params[:product_id_array]
-
-    # product_id_array each do |purchase|
-    # @purchase = Purchase.new(date, receipt_id, customer_id, purchase[:id])
-    #   if @purchase.save
-    #     redirect_to purchases_path
-    #   else
-    #     render :new
-    #   end
-    # end
-    #
-    # end
-
-
-
-    # @purchase = Purchase.new(purchase_params)
-    # if @purchase.save
-    #   redirect_to purchases_path
-    # else
-    #   render :new
-    # end
+    if @purchase.save
+      # render :new
+      redirect_to new_receipt_purchase_path(@receipt)
+    else
+      render :new
+    end
 
   end
 
   def edit
+    @receipt = Receipt.find(params[:receipt_id])
     @purchase = Purchase.find(params[:id])
     render :edit
   end
 
   def show
+    @receipt = Receipt.find(params[:receipt_id])
     @purchase = Purchase.find(params[:id])
     @customer = Customer.find(@purchase.customer_id)
     @product = Product.find(@purchase.product_id)
@@ -58,16 +46,19 @@ class PurchasesController < ApplicationController
   def update
     @purchase= Purchase.find(params[:id])
     if @purchase.update(purchase_params)
-      redirect_to purchases_path
+      redirect_to receipt_path(@purchase.receipt)
     else
       render :edit
     end
   end
 
   def destroy
-    @purchase = Purchase.find(params[:id])
-    @purchase.destroy
-    redirect_to purchases_path
+    @receipt = Receipt.find(params[:receipt_id])
+    @purchase = @receipt.purchases.destroy
+
+    # @purchase = Purchase.find(params[:id])
+    # @purchase.destroy
+    redirect_to receipt_purchases_path
   end
 
   private

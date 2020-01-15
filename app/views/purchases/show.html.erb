@@ -4,7 +4,7 @@
 <h1>Transaction: <%= @purchase.receipt_id %></h1>
 
 
-<p><%= link_to "Edit", edit_purchase_path(@purchase) %> </p>
-<p><%= link_to "Delete", purchase_path(@purchase), :data => {:confirm => "Really??", :method => "delete"} %></p>
+<p><%= link_to "Edit", edit_receipt_purchase_path(@receipt) %> </p>
+<p><%= link_to "Delete", receipt_purchase_path(@receipt), :data => {:confirm => "Really??", :method => "delete"} %></p>
 
-<p><%= link_to "Return to purchases", purchases_path %></p>
+<p><%= link_to "Return to purchases", receipt_purchases_path %></p>

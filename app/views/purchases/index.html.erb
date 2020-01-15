@@ -3,7 +3,7 @@
 <% if @purchases.any? %>
 <ul>
   <% @purchases.each do |purchase| %>
-  <li><%= link_to purchase.id, purchase_path(purchase) %></li>
+  <li><%= link_to purchase.product.name, receipt_purchase_path(@receipt) %></li>
   <% end %>
 </ul>
 <% else %>

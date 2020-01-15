@@ -1,0 +1,25 @@
+<h1><%= @receipt.id %></h1>
+
+
+<p><%= link_to "create new purchase", new_receipt_purchase_path(@receipt) %> </p>
+<p><%= link_to "Delete", receipt_path(@receipt), :data => {:confirm => "Really??", :method => "delete"} %></p>
+
+<p><%= link_to "Return to receipts", receipts_path %></p>
+
+
+<HR>
+  <h1>Purchases</h1>
+
+  <% if @purchases.any? %>
+  <ul>
+    <% @purchases.each do |purchase| %>
+    <li><%= link_to purchase.product.name, receipt_purchase_path(@receipt) %></li>
+    <% end %>
+  </ul>
+  <% else %>
+  <p>There are no purchases yet!</p>
+  <% end %>
+
+  <p><%= link_to "Add a new purchase", new_receipt_purchase_path(@receipt) %></p>
+
+  <HR>

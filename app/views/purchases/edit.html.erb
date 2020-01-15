@@ -1,9 +1,13 @@
-<h1>Edit purchases</h1>
+<h1>Edit purchase</h1>
 
-<%= form_for @purchase do |f| %>
+<%= form_for [@receipt, @purchase] do |f| %>
 
 <%= f.label :product_id  %>
 <%= collection_select(:purchase, :product_id, Product.all, :id, :name) %>
+product_id_array.push(:id)
+
+
+
 
 <%= f.label :customer_id  %>
 <%= collection_select(:purchase, :customer_id, Customer.all, :id, :name) %>
